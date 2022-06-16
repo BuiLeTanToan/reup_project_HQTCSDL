@@ -1,0 +1,15 @@
+﻿GO
+CREATE PROCEDURE DT_View_HD
+		@MaHD int
+AS
+
+BEGIN TRAN
+	IF NOT EXISTS (SELECT * FROM GiaHanHopDong WHERE MAHD = @MaHD)
+	BEGIN
+		PRINT (N'Mã hợp đồng không tồn tại');
+		ROLLBACK TRAN;
+	END
+
+	SELECT * FROM GiaHanHopDong
+	WHERE MAHD = @MaHD
+COMMIT TRAN

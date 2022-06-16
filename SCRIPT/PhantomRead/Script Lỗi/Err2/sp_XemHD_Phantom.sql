@@ -1,0 +1,18 @@
+﻿USE BanHangOnline
+GO
+
+----T1 */
+--drop proc sp_SPMoi
+CREATE OR ALTER PROCEDURE Phantom_XemHD
+AS
+BEGIN TRAN
+	set tran ISOLATION LEVEL READ COMMITTED
+	SELECT h.* 
+	FROM HopDong h
+	WAITFOR DELAY '00:00:10'
+	SELECT h.* 
+	FROM HopDong h
+COMMIT TRAN
+GO
+
+EXEC Phantom_XemHD 

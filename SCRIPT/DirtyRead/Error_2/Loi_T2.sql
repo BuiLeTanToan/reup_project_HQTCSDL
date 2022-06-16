@@ -1,0 +1,14 @@
+﻿GO
+CREATE PROCEDURE KH_View_SP
+	@MaSP int
+AS
+
+BEGIN TRAN
+	IF NOT EXISTS (SELECT * FROM SanPham WHERE MaSanPham = @MaSP)
+	BEGIN
+		PRINT (N'Mã sản phẩm không tồn tại');
+		ROLLBACK TRAN;
+	END
+
+	SELECT * FROM SanPham WHERE MaSanPham = @MaSP
+COMMIT TRAN
